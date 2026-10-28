@@ -74,6 +74,9 @@ def set_date(driver, element, value):
         value,
     )
 
+def scroll_up_down(driver, pixels):
+    driver.execute_script(f"window.scrollBy(0, {pixels});")
+
 
 # TC-03 writes the accounts it creates into this file (one email per line),
 # and TC-06 reads it to delete them. It sits next to the scripts.

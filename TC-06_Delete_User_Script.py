@@ -50,16 +50,17 @@ def delete_user(email):
     print(f"Deleted {email}")
 
 
-login_as_admin(driver, wait)
-click(wait, "a[href$='/admin/users']")
-wait.until(EC.url_contains("/admin/users"))
 
-wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(normalize-space(), 'Filter')]"))).click()
-wait.until(EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Players']"))).click()
-wait.until(EC.invisibility_of_element_located((By.XPATH, "//span[normalize-space()='admin@netplay.test']")))
+    login_as_admin(driver, wait)
+    click(wait, "a[href$='/admin/users']")
+    wait.until(EC.url_contains("/admin/users"))
 
-for email in emails_to_delete:
-    delete_user(email)
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(normalize-space(), 'Filter')]"))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Players']"))).click()
+    wait.until(EC.invisibility_of_element_located((By.XPATH, "//span[normalize-space()='admin@netplay.test']")))
 
-clear_created_users()  # everything is deleted, so empty the list
-print(f"[PASS] TC-06 Delete a user ({len(emails_to_delete)} account(s) from TC-03)")
+    for email in emails_to_delete:
+        delete_user(email)
+
+    clear_created_users()  # everything is deleted, so empty the list
+    print(f"[PASS] TC-06 Delete a user ({len(emails_to_delete)} account(s) from TC-03)")
