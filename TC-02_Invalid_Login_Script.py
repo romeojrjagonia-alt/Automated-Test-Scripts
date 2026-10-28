@@ -10,4 +10,4 @@ print("Error shown:", error.text)
 
 assert "/login" in driver.current_url, f"Left the login page: {driver.current_url}"
 assert error.text != "", "Error message was empty"
-print("[PASS] TC-02 Invalid Login")
+print("[PASS] TC-02 Invalid Login \n Current Page: " + driver.current_url)
